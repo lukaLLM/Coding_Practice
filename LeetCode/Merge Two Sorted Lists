@@ -1,3 +1,4 @@
+
 class ListNode(object):
     def __init__(self, val=0, next=None):
         self.val = val
@@ -10,9 +11,9 @@ class Solution(object):
         :type list2: Optional[ListNode]
         :rtype: Optional[ListNode]
         """
-        # Create a head node to simplify list construction
-        head = ListNode()
-        current = head
+        # Create a dummy node to simplify list construction
+        dummy = ListNode()
+        current = dummy
 
         while list1 and list2:
             if list1.val < list2.val:
@@ -25,12 +26,11 @@ class Solution(object):
            # Move the current pointer to the next node
             current = current.next
 
-        # Attach the remaining part of list1 or list2 to the merged list
-        # If list1 is not None, attach list1; otherwise, attach list2
-        current.next = list1 or list2
-        return head.next
-    
-
+            # Attach the remaining part of list1 or list2 to the merged list
+            # If list1 is not None, attach list1; otherwise, attach list2
+            current.next = list1 if list1 is not None else list2
+                # merged lists sta
+        return dummy.next
     
 
 # Example usage
@@ -38,7 +38,7 @@ list1 = ListNode()
 list2 = ListNode(0)
 
 solution = Solution()
-merged_list = solution.mergeTwoLists(0, [])
+merged_list = solution.mergeTwoLists([], 0)
 
 # Function to print the merged list
 def print_list(node):
